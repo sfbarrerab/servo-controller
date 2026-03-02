@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <servomotor.h> // servo functions 
-//#include <memory_mgmt.h> // memory functions
+#include <memory_mgmt.h> // memory functions
 #include <gui_interaction.h> // Functions to interact with the gui
 
 void setup() {
@@ -8,6 +8,7 @@ void setup() {
   Serial.begin(9600);
   delay(1000);
   initServoControlPins();
+  readEEPROM();
 }
 
 void loop() {
