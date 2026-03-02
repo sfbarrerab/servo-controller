@@ -4,10 +4,14 @@ static ServoControl servos[NUMBER_OF_SERVOS];
 
 // Init contorl pins
 void initServoControlPins(){
-  pinMode(CONTROL_PIN_SGN_0,INPUT);
-  pinMode(CONTROL_PIN_SGN_1,INPUT);
-  pinMode(CONTROL_PIN_SGN_2,INPUT);
-  pinMode(CONTROL_PIN_SGN_3,INPUT);
+  int controlPins[NUMBER_OF_SERVOS] = {CONTROL_PIN_SGN_0, CONTROL_PIN_SGN_1, CONTROL_PIN_SGN_2, CONTROL_PIN_SGN_3};
+  int outputPins[NUMBER_OF_SERVOS]  = {SERVO_OUTPUT_PIN_0, SERVO_OUTPUT_PIN_1, SERVO_OUTPUT_PIN_2, SERVO_OUTPUT_PIN_3};
+
+  for(int i = 0; i < NUMBER_OF_SERVOS; i++){
+      servos[i].controlPin = controlPins[i];
+      servos[i].servoOutputPin = outputPins[i];
+      pinMode(servos[i].controlPin, INPUT);
+  }
 }
 
 // The servo makes a lot of noises to try to keep
