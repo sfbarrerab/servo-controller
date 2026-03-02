@@ -6,7 +6,6 @@
 int currentRead_PortND;
 int previousRead_PortND;
 
-
 // Set initial position
 int initPos = 600;
 int finalPos = 900;
@@ -38,10 +37,10 @@ void loop() {
   if(previousRead_PortND != currentRead_PortND){
     if(digitalRead(CONTROL_PIN_SGN_0) == HIGH){
       digitalWrite(LED_BUILTIN, HIGH);
-      moveServoSilent(servoOutput_ND, SERVO_OUTPUT_PIN_0, PULSE_MIN, PULSE_MAX,  initPos);
+      moveServoSilent(0,  initPos);
     }else{
       digitalWrite(LED_BUILTIN, LOW);
-      moveServoSilent(servoOutput_ND, SERVO_OUTPUT_PIN_0, PULSE_MIN, PULSE_MAX, finalPos);
+      moveServoSilent(0, finalPos);
     }
   }
 
