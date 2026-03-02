@@ -1,8 +1,5 @@
 #include <Arduino.h>
-
-// initial and final servo positions
-extern int initPos;
-extern int finalPos;
+#include <servomotor.h>
 
 void interact_with_gui();
 
