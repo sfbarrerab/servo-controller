@@ -13,7 +13,7 @@ void interact_with_gui() {
         servoId = cmd.substring(firstComma + 1).toInt();
         if (servoId < 0 || servoId >= NUMBER_OF_SERVOS) return; // invalid servo
       }
-      
+
       Serial.print(servoId);
       Serial.print(",");
       Serial.print(getFirstPosition(servoId));
@@ -31,9 +31,13 @@ void interact_with_gui() {
       int servoId = cmd.substring(firstComma + 1, secondComma).toInt();
       if (servoId < 0 || servoId >= NUMBER_OF_SERVOS) return; // invalid
 
-      setFirstPosition(servoId,cmd.substring(secondComma + 1, thirdComma).toInt());
-      setSecondPosition(servoId,cmd.substring(thirdComma + 1).toInt()); 
+      int newFirst = cmd.substring(secondComma + 1, thirdComma).toInt();
+      int newSecond = cmd.substring(thirdComma + 1).toInt();
+
+      setFirstPosition(servoId,newFirst);
+      setSecondPosition(servoId,newSecond); 
       Serial.println("OK");
+      writeEEPROM(servoId, newFirst, newSecond);
     }
   }
 }

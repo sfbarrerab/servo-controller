@@ -1,4 +1,9 @@
+#pragma once
 #include <Arduino.h>
-#include <EEPROM.h> // to write the values in the internal memory
+#include <EEPROM.h> 
+#include <servomotor.h>
 
-void readEPROM();
+#define EEPROM_BASE_ADDR 0
+
+void readEEPROM();
+void writeEEPROM(int servoId, int firstPos, int secondPos);

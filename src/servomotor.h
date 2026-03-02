@@ -1,4 +1,3 @@
-
 #pragma once
 #include <Servo.h>  // Arduino library
 #include <Arduino.h>
@@ -17,16 +16,6 @@
 #define SERVO_OUTPUT_PIN_2 6
 #define SERVO_OUTPUT_PIN_3 9
 
-// define addresses where to save the positions
-#define ADDR_FIRST_POS_SERVO_0 120
-#define ADDR_SECOND_POS_SERVO_0 121
-#define ADDR_FIRST_POS__SERVO_1 122
-#define ADDR_SECOND_POS_SERVO_1 123
-#define ADDR_FIRST_POS__SERVO_2 124
-#define ADDR_SECOND_POS_SERVO_2 125
-#define ADDR_FIRST_POS__SERVO_3 126
-#define ADDR_SECOND_POS_SERVO_4 127
-
 // Pins to control the servo triggering to change position
 #define CONTROL_PIN_SGN_0 2
 #define CONTROL_PIN_SGN_1 4
@@ -38,8 +27,8 @@ struct ServoControl {
   int controlPin;
   int controlSignalValue = 0;
   int servoOutputPin;
-  int firstPosition = 600;
-  int secondPosition = 900;
+  int firstPosition;
+  int secondPosition;
 };
 
 void moveServoSilent(int servoId, int targetPos);
