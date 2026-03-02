@@ -3,7 +3,6 @@
 void interact_with_gui() {
   if (Serial.available()) {
     String cmd = Serial.readStringUntil('\n');
-    Serial.println(cmd);   // <-- debug
     cmd.trim();   
 
     if (cmd.startsWith("GET")) {
@@ -12,7 +11,6 @@ void interact_with_gui() {
       int servoId = 0; // default
       if (firstComma > 0) {
         servoId = cmd.substring(firstComma + 1).toInt();
-        Serial.println(cmd);   // <-- debug
         if (servoId < 0 || servoId >= NUMBER_OF_SERVOS) return; // invalid servo
       }
 
