@@ -10,42 +10,19 @@ int previousRead_PortND;
 int initPos = 600;
 int finalPos = 900;
 
-// Declare servos
-Servo servoOutput_ND;
-
-// Pins to control the servo triggering to change position
-#define CONTROL_PIN_SGN_0 7
-
 void setup() {
   // serial communication
   Serial.begin(9600);
-  // define Pins
-  pinMode(CONTROL_PIN_SGN_0,INPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
+  initServoControlPins();
 
-  // Default pin values
-  previousRead_PortND = LOW;
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
   // set and get positions from GUI
   interact_with_gui();
-  // Check the current lecture
-  currentRead_PortND = digitalRead(CONTROL_PIN_SGN_0);
-
-  // React only if the value changed
-  if(previousRead_PortND != currentRead_PortND){
-    if(digitalRead(CONTROL_PIN_SGN_0) == HIGH){
-      digitalWrite(LED_BUILTIN, HIGH);
-      moveServoSilent(0,  initPos);
-    }else{
-      digitalWrite(LED_BUILTIN, LOW);
-      moveServoSilent(0, finalPos);
-    }
-  }
-
-  // Update the previous value
-  previousRead_PortND = currentRead_PortND;
+  // React when servos control pin change
+  moveServoWithControlPins();
   delay(100);
 }
 
