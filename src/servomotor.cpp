@@ -1,4 +1,4 @@
-#include <servomotor.h> // servo functions 
+#include <servomotor.h>
 
 static ServoControl servos[NUMBER_OF_SERVOS];
 
@@ -16,7 +16,7 @@ void initServoControlPins(){
 void moveServoSilent(int servoId, int targetPos){
   servos[servoId].servoHndl.attach(servos[servoId].servoOutputPin, PULSE_MIN, PULSE_MAX);
   delay(30);
-  // int safePos = constrain(targetPos, minPos, maxPos);
+  // int safePos = constrain(targetPos, PULSE_MIN, PULSE_MAX);
   servos[servoId].servoHndl.writeMicroseconds(targetPos);
   delay(30);
   servos[servoId].servoHndl.detach();
@@ -41,4 +41,19 @@ void moveServoWithControlPins(){
       servos[servoId].controlSignalValue = currentRead;
     }
   }
+}
+
+// Functions to set/get position from outside this class
+void setFirstPosition(int servoId, int pos){
+  servos[servoId].firstPosition = pos;
+}
+void setSecondPosition(int servoId, int pos){
+  servos[servoId].secondPosition = pos;
+}
+
+int getFirstPosition(int servoId){
+  return servos[servoId].firstPosition;
+}
+int getSecondPosition(int servoId){
+  return servos[servoId].secondPosition;
 }

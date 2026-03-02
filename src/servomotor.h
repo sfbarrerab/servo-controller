@@ -1,4 +1,5 @@
 
+#pragma once
 #include <Servo.h>  // Arduino library
 #include <Arduino.h>
 
@@ -41,14 +42,10 @@ struct ServoControl {
   int secondPosition;
 };
 
-typedef enum
-{
-  SERVO_ND,
-  SERVO_PM,
-  SERVO_2,
-  SERVO_3
-} ServoId;
-
 void moveServoSilent(int servoId, int targetPos);
 void initServoControlPins();
 void moveServoWithControlPins();
+void setFirstPosition(int servoId, int pos);
+void setSecondPosition(int servoId, int pos);
+int getFirstPosition(int servoId);
+int getSecondPosition(int servoId);
