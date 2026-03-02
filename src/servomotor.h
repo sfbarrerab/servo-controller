@@ -20,15 +20,19 @@
 #define ADDR_SECOND_POS_PM_SERVO 123
 
 struct ServoControl {
+  Servo servoHndl;
   int controlPin;
-  int previousRead;
-  int servoOutput;
   int servoPin;
-  int initPos;
-  int finalPos;
+  int minPosition;
+  int maxPosition;
 };
 
-extern Servo servoOutput_ND;
-//ServoControl servos[NUMBER_OF_SERVOS];
+typedef enum
+{
+    SERVO_ND,
+    SERVO_PM,
+    SERVO_2,
+    SERVO_3
+} ServoId;
 
-void moveServoSilent(Servo myservo, int servoPin, int minPos, int maxPos, int targetPos);
+void moveServoSilent(int servoId, int targetPos);
