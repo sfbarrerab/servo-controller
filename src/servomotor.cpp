@@ -27,7 +27,7 @@ void moveServoSilent(int servoId, int targetPos){
 // Not fast response, but not important for our application
 void moveServoWithControlPins(){
   int currentRead;
-  for(int servoId = 0; servoId < MAX_SERVOS; servoId++){
+  for(int servoId = 0; servoId < NUMBER_OF_SERVOS; servoId++){
     currentRead = digitalRead(servos[servoId].controlPin);
     // If the control signal has changed...
     if(currentRead != servos[servoId].controlSignalValue){
