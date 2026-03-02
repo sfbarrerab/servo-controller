@@ -38,8 +38,8 @@ struct ServoControl {
   int controlPin;
   int controlSignalValue = 0;
   int servoOutputPin;
-  int firstPosition;
-  int secondPosition;
+  int firstPosition = 600;
+  int secondPosition = 900;
 };
 
 void moveServoSilent(int servoId, int targetPos);

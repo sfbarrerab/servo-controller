@@ -3,19 +3,11 @@
 //#include <memory_mgmt.h> // memory functions
 #include <gui_interaction.h> // Functions to interact with the gui
 
-int currentRead_PortND;
-int previousRead_PortND;
-
-// Set initial position
-int initPos = 600;
-int finalPos = 900;
-
 void setup() {
   // serial communication
   Serial.begin(9600);
+  delay(1000);
   initServoControlPins();
-
-  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
