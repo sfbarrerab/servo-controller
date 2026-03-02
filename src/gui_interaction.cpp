@@ -13,7 +13,9 @@ void interact_with_gui() {
         servoId = cmd.substring(firstComma + 1).toInt();
         if (servoId < 0 || servoId >= NUMBER_OF_SERVOS) return; // invalid servo
       }
-
+      
+      Serial.print(servoId);
+      Serial.print(",");
       Serial.print(getFirstPosition(servoId));
       Serial.print(",");
       Serial.println(getSecondPosition(servoId));
