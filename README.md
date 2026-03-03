@@ -1,15 +1,16 @@
 # Servo Controller GUI
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue?style=for-the-badge&logo=python)](https://www.python.org/) [![PyQt5](https://img.shields.io/badge/PyQt5-5.x-blue?style=for-the-badge&logo=qt)](https://www.riverbankcomputing.com/software/pyqt/) [![PlatformIO](https://img.shields.io/badge/PlatformIO-IDE-blue?style=for-the-badge&logo=platformio)](https://platformio.org/) [![Arduino](https://img.shields.io/badge/Arduino-Leonardo-lightgrey?style=for-the-badge&logo=arduino)](https://www.arduino.cc/)
+---     
 A user-friendly PyQt5 application for controlling servo motors connected to an Arduino Leonardo board. This application allows you to select, configure, and control multiple servo motors. The servos position values are stored in the controller EEPROM memory.
 
 ---
 
-## ⚡ Quick Start
+## Quick Start  ⚡ 
 
-> **📦 The application executable is located in:** `python_gui/dist/ServoController.exe`
->
-> Simply double-click `ServoController.exe` to launch the application - no Python installation required!
+**The application executable is located in:** `python_gui/dist/ServoController.exe`
+
+Simply double-click `ServoController.exe` to launch the application - no Python installation required!
 
 ---
 
