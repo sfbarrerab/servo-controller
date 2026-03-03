@@ -1,6 +1,6 @@
 # Servo Controller GUI
 
-A user-friendly PyQt5 application for controlling servo motors connected to an Arduino Leonardo board. This application allows you to select, configure, and control multiple servo motors with real-time feedback.
+A user-friendly PyQt5 application for controlling servo motors connected to an Arduino Leonardo board. This application allows you to select, configure, and control multiple servo motors. The servos position values are stored in the controller EEPROM memory.
 
 ---
 
@@ -64,8 +64,6 @@ The Arduino code uses the following pins to control up to 4 servo motors:
 | **Servo 2** | Pin 6 | Pin 7 | 450–1050 µs |
 | **Servo 3** | Pin 9 | Pin 8 | 450–1050 µs |
 
-**Center Position:** 750 microseconds
-
 ### Wiring Servo Motors
 
 1. **Power Supply:** Use an external 5V power supply (servos can draw significant current)
@@ -81,14 +79,6 @@ The Arduino code uses the following pins to control up to 4 servo motors:
 3. **Ground Connection:** 
    - Connect the common ground between Arduino and external power supply
    - Do NOT power servos directly from Arduino (insufficient current)
-
-### Troubleshooting Hardware Issues
-
-- **Servos vibrating/humming:** Ensure power supply has adequate capacity (typically 2A+ for 4 servos)
-- **Servo not responding:** Check signal wire connection and ensure correct pin is used
-- **Erratic servo movement:** Verify ground connection between Arduino and power supply
-- **Arduino reset when servo moves:** Power supply is insufficient; use external PSU
-
 ---
 
 ## Troubleshooting
@@ -98,7 +88,7 @@ The Arduino code uses the following pins to control up to 4 servo motors:
 | **Port not appearing** | Ensure Arduino is connected via USB and drivers are installed |
 | **Connection timeout** | Check that the correct port is selected and Arduino firmware is uploaded |
 | **Servo not moving** | Verify servo is properly connected to Arduino and power supply is adequate |
-
+| **Servos vibrating/humming** | Ensure power supply has adequate capacity (typically 2A+ for 4 servos)|
 ---
 
 ## Modifying the Arduino Firmware
@@ -121,21 +111,14 @@ If you want to modify the servo controller firmware and upload it to your Arduin
 
 1. **Open the project folder** in VS Code (File → Open Folder → select the servo-controller folder)
 
-2. **Modify the source code** if desired:
-   - Edit files in the `src/` folder (e.g., `servomotor.cpp`, `main.cpp`)
-   - Change pin configurations in `src/servomotor.h` if needed
-   - Modify control logic as required
+2. **Modify the source code** 
+    if desired, e.g., files in the `src/` folder (e.g., `servomotor.cpp`, `main.cpp`)
 
-3. **Build the firmware:**
-   - Click the **✓ (Build)** button in the PlatformIO toolbar at the bottom
-   - Or use the keyboard shortcut: **Ctrl+Alt+B**
-   - Wait for compilation to complete
+3. **Build the firmware:** 
+    Click the **✓ (Build)** button in the PlatformIO toolbar at the bottom
 
 4. **Upload to Arduino Leonardo:**
-   - Connect your Arduino Leonardo via USB
-   - Click the **→ (Upload)** button in the PlatformIO toolbar
-   - Or use: **Ctrl+Alt+U**
-   - Select the correct COM port if prompted
+   Connect your Arduino Leonardo via USB, and click the **→ (Upload)** button in the PlatformIO toolbar
 
 ### Project Structure
 
@@ -180,7 +163,7 @@ servo-controller/
 
 ---
 
-## Building the GUI from Source (Optional)
+## Building the GUI from Source
 
 If you want to rebuild the Python executable:
 
