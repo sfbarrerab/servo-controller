@@ -157,17 +157,17 @@ servo-controller/
 - Change `PULSE_MIN`, `PULSE_MAX`, or `PULSE_CENTER` values
 
 **Add debug output:**
-- Use `Serial.print()` or `Serial.println()` in your code
+- Use `Serial.print()` or `Serial.println()` to debug between multiple parts of the code.
 - View output via Serial Monitor in PlatformIO
-- Debug print statements should be later deleted as it might interfere with the operation of the GUI.
+- Debug print statements *MUST* be later deleted as they interfere with the operation of the GUI.
 
 ### Troubleshooting Firmware Build
 
 | Issue | Solution |
 |-------|----------|
-| **Upload fails** | Ensure Arduino is selected as board in `platformio.ini` and COM port is correct |
+| **Upload fails** | Ensure ESP32 is selected as board in `platformio.ini` and COM port is correct |
 | **Compilation errors** | Check for syntax errors and ensure all libraries are installed |
-| **Board not detected** | Install Leonardo USB drivers or restart VS Code |
+| **Board not detected** | Install ESP32 USB drivers (Prolific USB-to-Serial - PL2xx) or restart VS Code |
 
 ---
 
