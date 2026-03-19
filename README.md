@@ -99,10 +99,6 @@ The ESP32 code uses the following pins to control up to 4 servo motors:
 | **Servos vibrating/humming** | Ensure power supply has adequate capacity (typically 3A+ for 4 servos)|
 ---
 
-If you want to modify the servo controller firmware and upload it to your ESP32 adequate |
-| **Servos vibrating/humming** | Ensure power supply has adequate capacity (typically 2A+ for 4 servos)|
----
-
 ## Modifying the Arduino Firmware
 
 If you want to modify the servo controller firmware and upload it to your Arduino Leonardo, use **PlatformIO**:
