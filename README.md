@@ -1,8 +1,8 @@
 # Servo Controller GUI
 
-[![Python](https://img.shields.io/badge/python-3.8%2B-blue?style=for-the-badge&logo=python)](https://www.python.org/) [![PyQt5](https://img.shields.io/badge/PyQt5-5.x-blue?style=for-the-badge&logo=qt)](https://www.riverbankcomputing.com/software/pyqt/) [![PlatformIO](https://img.shields.io/badge/PlatformIO-IDE-blue?style=for-the-badge&logo=platformio)](https://platformio.org/) [![Arduino](https://img.shields.io/badge/Arduino-Leonardo-lightgrey?style=for-the-badge&logo=arduino)](https://www.arduino.cc/)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue?style=for-the-badge&logo=python)](https://www.python.org/) [![PyQt5](https://img.shields.io/badge/PyQt5-5.x-blue?style=for-the-badge&logo=qt)](https://www.riverbankcomputing.com/software/pyqt/) [![PlatformIO](https://img.shields.io/badge/PlatformIO-IDE-blue?style=for-the-badge&logo=platformio)](https://platformio.org/) [![ESP32](https://img.shields.io/badge/ESP32-DevKit-blue?style=for-the-badge&logo=espressif)](https://www.espressif.com/)
 ---     
-A user-friendly PyQt5 application for controlling servo motors connected to an Arduino Leonardo board. This application allows you to select, configure, and control multiple servo motors. The servos position values are stored in the controller EEPROM memory.
+A user-friendly PyQt5 application for controlling servo motors connected to an ESP32 board. This application allows you to select, configure, and control multiple servo motors. The servos position values are stored in the controller memory.
 
 ---
 
@@ -20,7 +20,7 @@ Simply double-click `ServoController.exe` to launch the application - no Python 
 1. Double-click the `ServoController.exe` file from the `python_gui/dist` folder to open the GUI.
 2. The application displays available COM ports in the **Port Selection** dropdown
 2. Click the **dropdown menu** to view all connected devices
-3. Select the COM port where your Arduino Leonardo is connected
+3. Select the COM port where your ESP32 is connected
 
 ![Select Port](images_README/select-connector.png)
 
@@ -48,48 +48,58 @@ Simply double-click `ServoController.exe` to launch the application - no Python 
 
 ## Requirements
 
-- **Hardware:** Arduino Leonardo with servo motors connected to digital pins
+- **Hardware:** ESP32 DevKit with servo motors connected to GPIO pins
 - **Software:** Windows OS (exe provided) or Python 3.8+ with PyQt5
 
 ---
 
-## Hardware Setup & Arduino Configuration
+## Hardware Setup & ESP32 Configuration
 
-### Arduino Leonardo Pin Configuration
+### ESP32 Pin Configuration
 
-The Arduino code uses the following pins to control up to 4 servo motors:
+The ESP32 code uses the following pins to control up to 4 servo motors:
 
-| Servo | PWM Output Pin | Control Signal Pin | Pulse Range |
-|-------|----------------|-------------------|-------------|
-| **Servo 0** | Pin 3 | Pin 2 | 450–1050 µs |
-| **Servo 1** | Pin 5 | Pin 4 | 450–1050 µs |
-| **Servo 2** | Pin 6 | Pin 7 | 450–1050 µs |
-| **Servo 3** | Pin 9 | Pin 8 | 450–1050 µs |
+| Servo | PWM Output Pin (GPIO) | Control Input Pin (GPIO) | Pulse Range |
+|-------|----------------------|--------------------------|-------------|
+| **Servo 0** | GPIO 18 | GPIO 25 | 450–1050 µs |
+| **Servo 1** | GPIO 19 | GPIO 26 | 450–1050 µs |
+| **Servo 2** | GPIO 21 | GPIO 27 | 450–1050 µs |
+| **Servo 3** | GPIO 22 | GPIO 33 | 450–1050 µs |
 
 ### Wiring Servo Motors
 
-1. **Power Supply:** Use an external 5V power supply (servos can draw significant current)
+1. **Power Supply:** Use an external 6-8V power supply (servos can draw up to 3A)
    - Connect positive rail to servo red wires
    - Connect negative/ground rail to servo brown wires
 
-2. **Signal Connections:** Connect servo signal pins (orange wire) to the Arduino Leonardo:
-   - **Servo 0 signal** → Arduino Pin 3
-   - **Servo 1 signal** → Arduino Pin 5
-   - **Servo 2 signal** → Arduino Pin 6
-   - **Servo 3 signal** → Arduino Pin 9
+2. **Signal Connections:** Connect servo signal pins (orange wire) to the ESP32:
+   - **Servo 0 signal** → ESP32 GPIO 18 (PWM Output)
+   - **Servo 1 signal** → ESP32 GPIO 19 (PWM Output)
+   - **Servo 2 signal** → ESP32 GPIO 21 (PWM Output)
+   - **Servo 3 signal** → ESP32 GPIO 22 (PWM Output)
 
-3. **Ground Connection:** 
-   - Connect the common ground between Arduino and external power supply
-   - Do NOT power servos directly from Arduino (insufficient current)
+3. **Control Input Connections:** Connect control signal pins to:
+   - **Servo 0 control** → ESP32 GPIO 25
+   - **Servo 1 control** → ESP32 GPIO 26
+   - **Servo 2 control** → ESP32 GPIO 27
+   - **Servo 3 control** → ESP32 GPIO 33
+
+4. **Ground Connection:** 
+   - Connect the common ground between ESP32 and external power supply
+   - Do NOT power servos directly from ESP32 (insufficient current)
 ---
 
 ## Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
-| **Port not appearing** | Ensure Arduino is connected via USB and drivers are installed |
-| **Connection timeout** | Check that the correct port is selected and Arduino firmware is uploaded |
-| **Servo not moving** | Verify servo is properly connected to Arduino and power supply is adequate |
+| **Port not appearing** | Ensure ESP32 is connected via USB and drivers are installed |
+| **Connection timeout** | Check that the correct port is selected and ESP32 firmware is uploaded |
+| **Servo not moving** | Verify servo is properly connected to ESP32 and power supply is adequate |
+| **Servos vibrating/humming** | Ensure power supply has adequate capacity (typically 3A+ for 4 servos)|
+---
+
+If you want to modify the servo controller firmware and upload it to your ESP32 adequate |
 | **Servos vibrating/humming** | Ensure power supply has adequate capacity (typically 2A+ for 4 servos)|
 ---
 
