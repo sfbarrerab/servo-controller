@@ -1,5 +1,5 @@
 #pragma once
-#include <Servo.h>  // Arduino library
+#include <ESP32Servo.h> // Arduino library
 #include <Arduino.h>
 
 #define NUMBER_OF_SERVOS 4
@@ -9,32 +9,33 @@
 #define PULSE_MIN   450
 #define PULSE_MAX   1050
 #define PULSE_CENTER 750
+#define WORKING_FRERQUENCY 560
 
-// define output pins of the servos PWM signal
-#define SERVO_OUTPUT_PIN_0 3
-#define SERVO_OUTPUT_PIN_1 5
-#define SERVO_OUTPUT_PIN_2 6
-#define SERVO_OUTPUT_PIN_3 9
+// Servo PWM outputs
+#define SERVO_OUTPUT_PIN_0 18
+#define SERVO_OUTPUT_PIN_1 19
+#define SERVO_OUTPUT_PIN_2 21
+#define SERVO_OUTPUT_PIN_3 22
 
-// Pins to control the servo triggering to change position
-#define CONTROL_PIN_SGN_0 2
-#define CONTROL_PIN_SGN_1 4
-#define CONTROL_PIN_SGN_2 7
-#define CONTROL_PIN_SGN_3 8
+// Control input pins
+#define CONTROL_PIN_SGN_0 25
+#define CONTROL_PIN_SGN_1 26
+#define CONTROL_PIN_SGN_2 27
+#define CONTROL_PIN_SGN_3 33
 
 struct ServoControl {
   Servo servoHndl;
-  int controlPin;
+  uint8_t controlPin;
   int controlSignalValue = 0;
-  int servoOutputPin;
-  int firstPosition;
-  int secondPosition;
+  uint8_t servoOutputPin;
+  uint16_t firstPosition;
+  uint16_t secondPosition;
 };
 
-void moveServoSilent(int servoId, int targetPos);
+void moveServoSilent(uint8_t servoId, uint16_t targetPos);
 void initServoControlPins();
 void moveServoWithControlPins();
-void setFirstPosition(int servoId, int pos);
-void setSecondPosition(int servoId, int pos);
-int getFirstPosition(int servoId);
-int getSecondPosition(int servoId);
+void setFirstPosition(uint8_t servoId, uint16_t pos);
+void setSecondPosition(uint8_t servoId, uint16_t pos);
+uint16_t getFirstPosition(uint8_t servoId);
+uint16_t getSecondPosition(uint8_t servoId);

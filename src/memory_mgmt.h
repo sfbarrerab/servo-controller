@@ -4,6 +4,8 @@
 #include <servomotor.h>
 
 #define EEPROM_BASE_ADDR 0
+#define EEPROM_SIZE 512
 
+void initEEPROM();
 void readEEPROM();
-void writeEEPROM(int servoId, int firstPos, int secondPos);
+void writeEEPROM(uint8_t servoId, uint16_t firstPos, uint16_t secondPos);
